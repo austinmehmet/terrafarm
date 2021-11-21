@@ -1,29 +1,55 @@
 use bytes::Bytes;
 use log::info;
 use serde_json::json;
+use serde_json::Value::Null;
 use std::collections::HashMap;
 use std::error::Error;
 use std::fs;
 use std::fs::File;
 use std::io::prelude::*;
 
+extern crate clap;
+use clap::{App, Arg, ArgMatches, SubCommand};
+
 static RAW_DICTIONARY: &str = include_str!("dictionary.json");
 
 fn main() {
-    let provider = std::env::args().nth(1).expect("no provider provided");
-    let service_type = std::env::args().nth(2).expect("no service type provided");
+    let matches = App::new("Terrafarm")
+        .version("1.0.0")
+        .about("A CLI used to query Terraform starter files to assist in getting you off the ground for cloud deployments")
+        .subcommand(SubCommand::with_name("get")
+            .about("Command for retrieivng terraform files")
+            .arg(Arg::with_name("provider")
+                .long("provider")
+                .short("p")
+                .value_name("PROVIDER")
+                .help("The provider you want to retrieve from IE aws, azure, gcp, patterns")
+                .takes_value(true)
+                .required(true)
+                .validator(allowed_provider)
+            )
+            .arg(Arg::with_name("service")
+                .long("service")
+                .short("s")
+                .value_name("SERVICE")
+                .help("The service type to retrieve IE dynamodb, lambda, spa")
+                .takes_value(true)
+                .required(true)
+                .validator(allowed_service)
+            )
+        ).get_matches();
 
-    let dictionary = match read_dictionary() {
-        Ok(inner) => inner,
-        Err(_) => panic!("Failure to load dictionary"),
-    };
+    if let Some(matches) = matches.subcommand_matches("get") {
+        handle_get_command(&matches);
+    }
+}
 
-    let services_raw = match dictionary.get(&provider) {
-        Some(inner) => inner,
-        None => panic!("Cloud Provider is not supoprted with the given dictionary"),
-    };
+fn handle_get_command(matches: &ArgMatches) {
+    let provider = matches.value_of("provider").unwrap();
+    let service_type = matches.value_of("service").unwrap();
 
-    let services_json = json!(services_raw);
+    let dictionary = read_dictionary().unwrap();
+    let services_json = json!(dictionary.get(provider).unwrap());
 
     println!(
         "Retrieving terraform files for {} {}...",
@@ -38,10 +64,31 @@ fn main() {
     } else if services_json[&service_type].is_string() {
         let service_type_uri = &services_json[&service_type].as_str().unwrap();
         retrieve_and_save_file(&service_type_uri)
+    } else if services_json[&service_type] == Null {
+        eprintln!("Invalid service");
+        std::process::exit(1)
     } else {
         eprintln!("Invalid type within dictionary - values must be either 'String' or 'Array'");
         std::process::exit(1)
     }
+}
+
+fn allowed_provider(value: String) -> Result<(), String> {
+    match read_dictionary().unwrap().get(&value) {
+        Some(_) => return Ok(()),
+        None => Err(String::from(
+            "Must be one of allowed values: [aws, azure, gcp, kubernetes, oci, patterns]",
+        )),
+    }
+}
+
+fn allowed_service(value: String) -> Result<(), String> {
+    if RAW_DICTIONARY.contains(&value) {
+        return Ok(());
+    }
+    Err(String::from(
+        "Invalid service type - service not found in provided dictionary",
+    ))
 }
 
 fn read_dictionary() -> Result<HashMap<String, serde_json::Value>, Box<dyn Error>> {
