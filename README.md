@@ -1,5 +1,3 @@
-<h1 align="center">Terrafarm</h1>
-
 <p align="center">
   <img src="https://github.com/austinmehmet/terrafarm/blob/master/assets/terrafarm.png" alt="terrafarm-logo" width="120px" height="120px"/>
   <br>
