@@ -8,15 +8,13 @@
 
 
 ## Why? 
-I always hated starting Terraform files from scratch. Almost always I'd go hunting for starter files off the terraform website or via stack overflow only to find that these starter templates do not follow best practices my company has chosen to follow with things like tagging, naming conventions, security configurations etc. Instead of forcing developers to hunt for these standards through your internal repos, provide them with templates that can act as a starting point for their applications. A series of terraform template files can provide the much needed lift a team requires to get into the cloud ASAP. Terrafarm is all about organizing all your Terraform templates into a central repo and 'farm'ing them through simple commands.
+I've always hated starting Terraform files from scratch. Instead of painfully starting a blank `main.tf`, I would almost always go hunting for starter files off of the terraform website, StackOverflow, or Github only to find that these starter templates do not follow best practices my company has chosen to follow with things like tagging, naming conventions, security configurations etc. Instead of forcing developers to hunt for these standards through your internal repos, why not provide them with templates that can act as a starting point for their applications? A series of terraform starter files for common services can provide the much needed lift a team requires to get into the cloud ASAP. Terrafarm is all about organizing all your sharable Terraform code into a central repo and 'farm'ing them through simple commands.
  
-## Example Usage
+## Example CLI Usage
 ```shell
 farm aws dynamodb
  
 farm aws api_gateway
- 
-farm aws eks
  
 farm gcp cloudfunctions
  
@@ -27,15 +25,15 @@ farm patterns spa
  
 ## Base Functionality
  
-Out of the box this CLI will work and query template files for a ton of cloud provider services but that is not really the goal of this CLI as for the majority of these services your company will require additional configuration or make use of customized modules. So while you can use the CLI now to query generic templates, you should instead push your company to forking this repo and providing their own internally deployed solution.
+Out of the box this CLI will work and query template files for a ton of cloud provider services but that is not really the goal of this CLI as for the majority of these services your company will require additional configuration or make use of customized modules. So while you can use the CLI now to query generic templates, you should instead push your company to fork this repo and providing their own internally deployed solution.
  
 ## What do I need to do to roll my own Terrafarm?
 1. Create an s3 bucket or other hosting solution and add any of your company's terraform templates into it following the convention of `/bucket/provider/service` but if you didn't want to follow that I can't stop you
-2. Modify the included `src/dictionary.json` file to point to your own company's internal templates
+2. Modify the included `src/dictionary.json` file to point to your own company's internal templates, or don't
 3. Bundle up this program and distribute it through your company. To avoid conflicts with this CLIs deployment, it would be recommended to scope your CLI to `@company/farm` but again, do whatever, I am helpless to whatever choices you make
  
 ## What about combining services for more real life examples like a SPA deployment or a Lambda API?
-The power of this CLI is that it can be configured to your liking seeing you do most of the work by building the dictionary. If you check the `dictionary.json` there is a section named `patterns` where you can list out your own customize commands. Rather than `farm aws dynamodb` you could instead do `farm patterns spa` so long as that item exists within the dictionary. Dictionary items can refer to either a single URI or many allowing complex applications like singple page application deployments to be handled with ease.
+The power of this CLI is that it can be configured to your liking seeing you do most of the work anyway by building the dictionary. If you check the `src/dictionary.json` there is a section named `patterns` where you can list out your own customize commands. Rather than `farm aws dynamodb` you could instead do `farm patterns spa` so long as that item exists within the dictionary. Dictionary items can refer to either a single URI or an array of URI allowing complex applications like singple page application deployments to be handled with ease.
  
 You are free to rename `patterns` to whatever you like as well or provide your own key like `internal` or `your-company-name`. The CLI works by simple JSON lookup, there are no predefined commands, it is all based on the provided dictionary.
  
