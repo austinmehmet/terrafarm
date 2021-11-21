@@ -24,6 +24,6 @@ Out of the box this CLI will work and query template files for a ton of cloud pr
 2. Create the dictionary.json file this CLI requires and add each cloud provider you support along with the services you want to provide templates for. There is a `dictionary.sample.json` file for you to build off of
 3. Bundle up this program and distribute it through your company. To avoid conflicts with this CLIs deployment, it would be recommended to scope your CLI to `@company/farm` but again, do whatever, I am helpless to whatever choices you make
  
-### Do I really need this CLI?
+## Do I really need this CLI?
  
 Not at all, someone could just copy and paste the files if you were to publish your dictionary.json somewhere. This is just convenient and nothing more. Now, this could do a lot more. Provided a series of extra arguments like `farm dynamo --name="my-table" --read-units="30" --write-units="15"` you could build a CLI where not only do your developers get a template but they get a template with (hopefully) no extra needed customization . Maybe I'll consider this in the future....
