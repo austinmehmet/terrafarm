@@ -5,8 +5,9 @@ use std::collections::HashMap;
 use std::error::Error;
 use std::fs::File;
 use std::fs;
-use std::io::BufReader;
 use std::io::prelude::*;
+
+static RAW_DICTIONARY: &str = include_str!("dictionary.json");
 
 fn main() {
     let cloud_provider = std::env::args().nth(1).expect("no cloud provider provided");
@@ -45,10 +46,7 @@ fn main() {
 }
 
 fn read_dictionary() -> Result<HashMap<String, serde_json::Value>, Box<dyn Error>> {
-    let dictionary_location = "./dictionary.json";
-    let file = File::open(dictionary_location)?;
-    let reader = BufReader::new(file);
-    let map: HashMap<String, serde_json::Value> = serde_json::from_reader(reader)?;
+    let map: HashMap<String, serde_json::Value> = serde_json::from_str(&RAW_DICTIONARY)?;
     Ok(map)
 }
 
