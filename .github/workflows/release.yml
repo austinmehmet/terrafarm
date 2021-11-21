@@ -70,6 +70,7 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Setup | Dependencies
+        if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt update && sudo apt install openssl libssl-dev pkg-config
 
