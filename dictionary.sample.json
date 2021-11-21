@@ -14,5 +14,11 @@
   "azure": {},
   "gcp": {},
   "kubernetes": {},
-  "oci": {}
+  "oci": {},
+  "patterns": {
+    "lambda-api": "https://s3.us-west-2.amazonaws.com/company-template-terraform/internal/lambda-api/main.tf",
+    "lambda-cron-job": "https://s3.us-west-2.amazonaws.com/company-template-terraform/internal/lambda-cron-job/main.tf",
+    "reverse-proxy": "https://s3.us-west-2.amazonaws.com/company-template-terraform/internal/reverse-proxy/main.tf",
+    "single-page-app": "https://s3.us-west-2.amazonaws.com/company-template-terraform/internal/spa/main.tf"
+  }
 }
