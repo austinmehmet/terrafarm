@@ -40,5 +40,4 @@ out/
 
 ### Custom ###
 .DS_Store
-dictionary.json
 terraform

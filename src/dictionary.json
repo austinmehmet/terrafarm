@@ -1,0 +1,24 @@
+{
+  "aws": {
+    "api_gateway": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/aws/api_gateway.tf",
+    "dynamodb": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/aws/dynamodb.tf",
+    "ec2": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/aws/ec2.tf",
+    "ecr": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/aws/ecr.tf",
+    "ecs": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/aws/ecs.tf",
+    "eks": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/aws/eks.tf",
+    "iam": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/aws/iam.tf",
+    "lambda": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/aws/lambda.tf",
+    "kinesis": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/aws/kinesis.tf",
+    "s3": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/aws/s3.tf"
+  },
+  "azure": {},
+  "gcp": {},
+  "kubernetes": {},
+  "oci": {},
+  "patterns": {
+    "lambda_api": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/lambda_api/main.tf",
+    "lambda_cron_job": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/lambda_cron_job/main.tf",
+    "reverse_proxy": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/reverse_proxy/main.tf",
+    "spa": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/spa/main.tf"
+  }
+}
