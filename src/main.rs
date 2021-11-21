@@ -1,10 +1,10 @@
 use bytes::Bytes;
-use log::{info};
-use serde_json::{json};
+use log::info;
+use serde_json::json;
 use std::collections::HashMap;
 use std::error::Error;
-use std::fs::File;
 use std::fs;
+use std::fs::File;
 use std::io::prelude::*;
 
 static RAW_DICTIONARY: &str = include_str!("dictionary.json");
@@ -22,7 +22,7 @@ fn main() {
 
     let services_raw = match cloud_provider_services {
         Some(inner) => inner,
-        None => panic!("Cloud Provider is not supoprted with the given dictionary")
+        None => panic!("Cloud Provider is not supoprted with the given dictionary"),
     };
 
     let services_json = json!(services_raw);
@@ -33,7 +33,7 @@ fn main() {
 
     let file_bytes = match make_request(&service_type_uri) {
         Ok(inner) => inner,
-        Err(_) => panic!("Failure on network request")
+        Err(_) => panic!("Failure on network request"),
     };
 
     println!("Writing template file to disk...");
@@ -50,11 +50,10 @@ fn read_dictionary() -> Result<HashMap<String, serde_json::Value>, Box<dyn Error
     Ok(map)
 }
 
-
 fn make_request(uri: &str) -> Result<bytes::Bytes, reqwest::Error> {
     let client = reqwest::blocking::Client::new();
     let response = client.get(uri).send()?;
-    return response.bytes()
+    return response.bytes();
 }
 
 fn write_file(bytes: Bytes, service_type: &str) -> std::io::Result<()> {
