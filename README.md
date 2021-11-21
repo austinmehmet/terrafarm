@@ -1,5 +1,15 @@
-# Terrafarm
- 
+<h1 align="center">Terrafarm</h1>
+
+<p align="center">
+  <img src="https://github.com/austinmehmet/terrafarm/blob/master/assets/terrafarm.png" alt="terrafarm-logo" width="120px" height="120px"/>
+  <br>
+  <i>Terrafarm is a fork-able Rust based CLI that allows companies to provide their developers
+    <br> with easy-to-access terraform files</i>
+  <br>
+</p>
+
+
+## Why? 
 I always hated starting Terraform files from scratch. Almost always I'd go hunting for starter files off the terraform website or via stack overflow only to find that these starter templates do not follow best practices my company has chosen to follow with things like tagging, naming conventions, security configurations etc. Instead of forcing developers to hunt for these standards through your internal repos, provide them with templates that can act as a starting point for their applications. A series of terraform template files can provide the much needed lift a team requires to get into the cloud ASAP. Terrafarm is all about organizing all your Terraform templates into a central repo and 'farm'ing them through simple commands.
  
 ## Example Usage
@@ -25,7 +35,7 @@ Out of the box this CLI will work and query template files for a ton of cloud pr
 3. Bundle up this program and distribute it through your company. To avoid conflicts with this CLIs deployment, it would be recommended to scope your CLI to `@company/farm` but again, do whatever, I am helpless to whatever choices you make
  
 ## What about combining services for more real life examples like a SPA deployment or a Lambda API?
-The power of this CLI is that it can be configured to your liking seeing you do most of the work by building the dictionary. If you check the `dictionary.sample.json` there is a section named `patterns` where you can list out your own customize commands Rather than `farm aws dynamodb` you could instead do `farm patterns single-page-application` so long as that item exists within the dictionary. That dictionary item should point to a `main.tf` file that contains all the necessary configuration to get an SPA out into your cloud provider of choice. The downside of this is that this CLI doesn't pull down entire directories so you will be required to house all required terraform code within a single `main.tf`.  
+The power of this CLI is that it can be configured to your liking seeing you do most of the work by building the dictionary. If you check the `dictionary.sample.json` there is a section named `patterns` where you can list out your own customize commands. Rather than `farm aws dynamodb` you could instead do `farm patterns single-page-application` so long as that item exists within the dictionary. That dictionary item should point to a `main.tf` file that contains all the necessary configuration to get an SPA out into your cloud provider of choice. The downside of this is that this CLI doesn't pull down entire directories so you will be required to house all required terraform code within a single `main.tf`.  
  
 You are free to rename `patterns` to whatever you like as well or provide your own key like `internal` or `your-company-name`. The CLI works by simple JSON lookup, there are no predefined commands, it is all based on the provided dictionary.
  
