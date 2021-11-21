@@ -19,6 +19,11 @@
     "lambda_api": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/lambda_api/main.tf",
     "lambda_cron_job": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/lambda_cron_job/main.tf",
     "reverse_proxy": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/reverse_proxy/main.tf",
-    "spa": "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/spa/main.tf"
+    "spa": [
+      "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/spa/main.tf",
+      "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/spa/iam.tf",
+      "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/spa/cloudfront.tf",
+      "https://farm-tf-templates.s3.us-west-2.amazonaws.com/patterns/spa/waf.tf"
+    ]
   }
 }
