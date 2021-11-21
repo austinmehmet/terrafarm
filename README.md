@@ -12,15 +12,15 @@ I've always hated starting Terraform files from scratch. Instead of painfully st
  
 ## Example CLI Usage
 ```shell
-farm aws dynamodb
+farm get -p aws -s dynamodb
  
-farm aws api_gateway
+farm get -p aws -s api_gateway
  
-farm gcp cloudfunctions
+farm get -p gcp -s cloudfunctions
  
-farm azure iothub
+farm get -p azure -s iothub
 
-farm patterns spa
+farm get -p patterns -s spa
 ```
  
 ## Base Functionality
@@ -33,13 +33,11 @@ Out of the box this CLI will work and query template files for a ton of cloud pr
 3. Bundle up this program and distribute it through your company. To avoid conflicts with this CLIs deployment, it would be recommended to scope your CLI to `@company/farm` but again, do whatever, I am helpless to whatever choices you make
  
 ## What about combining services for more real life examples like a SPA deployment or a Lambda API?
-The power of this CLI is that it can be configured to your liking seeing you do most of the work anyway by building the dictionary. If you check the `src/dictionary.json` there is a section named `patterns` where you can list out your own customize commands. Rather than `farm aws dynamodb` you could instead do `farm patterns spa` so long as that item exists within the dictionary. Dictionary items can refer to either a single URI or an array of URI allowing complex applications like singple page application deployments to be handled with ease.
- 
-You are free to rename `patterns` to whatever you like as well or provide your own key like `internal` or `your-company-name`. The CLI works by simple JSON lookup, there are no predefined commands, it is all based on the provided dictionary.
+The power of this CLI is that it can be configured to your liking seeing you do most of the work anyway by building the dictionary. If you check the `src/dictionary.json` there is a section named `patterns` where you can list out your own customize commands. Dictionary items can refer to either a single URI or an array of URI allowing complex applications like single page application deployments to be handled with ease.
  
 ## Do I really need this CLI?
  
-Not at all, someone could just copy and paste the files if you were to publish your `dictionary.json` somewhere. This is just convenient and nothing more. Now, this CLI could do a lot more. Provided a series of extra arguments like `farm aws dynamodb --name="my-table" --read-units="30" --write-units="15" --hash-key="id" --range-key="title"` you could build a CLI where not only do your developers get a template but they get a template with (hopefully) no extra needed customization . Maybe I'll consider this in the future....
+Not at all, someone could just copy and paste the files if you were to publish your `dictionary.json` somewhere. This is just convenient and nothing more. Now, this CLI could do a lot more. Provided a series of extra arguments like `farm configure -p aws -s dynamodb --name="my-table" --read-units="30" --write-units="15" --hash-key="id" --range-key="title"` you could build a CLI where not only do your developers get a template but they get a template with (hopefully) no extra needed customization.
 
 ## YIPPEE I never need to write Terraform code again!!!
 
