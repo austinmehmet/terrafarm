@@ -69,6 +69,10 @@ jobs:
             ~/.cargo/git
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
+      - name: Setup | Dependencies
+        run: |
+          sudo apt update && sudo apt install openssl libssl-dev pkg-config
+
       - name: Setup | Rust
         uses: actions-rs/toolchain@v1.0.7
         with:
