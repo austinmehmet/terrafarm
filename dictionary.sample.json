@@ -1,0 +1,12 @@
+{
+  "api_gateway": "https://s3.us-west-2.amazonaws.com/company-template-terraform/aws/api_gateway.tf",
+  "dynamo": "https://s3.us-west-2.amazonaws.com/company-template-terraform/aws/dynamo.tf",
+  "ec2": "https://s3.us-west-2.amazonaws.com/company-template-terraform/aws/ec2.tf",
+  "ecr": "https://s3.us-west-2.amazonaws.com/company-template-terraform/aws/ecr.tf",
+  "ecs": "https://s3.us-west-2.amazonaws.com/company-template-terraform/aws/ecs.tf",
+  "eks": "https://s3.us-west-2.amazonaws.com/company-template-terraform/aws/eks.tf",
+  "iam": "https://s3.us-west-2.amazonaws.com/company-template-terraform/aws/iam.tf",
+  "lambda": "https://s3.us-west-2.amazonaws.com/company-template-terraform/aws/lambda.tf",
+  "kinesis": "https://s3.us-west-2.amazonaws.com/company-template-terraform/aws/kinesis.tf",
+  "s3": "https://s3.us-west-2.amazonaws.com/company-template-terraform/aws/s3.tf"
+}
