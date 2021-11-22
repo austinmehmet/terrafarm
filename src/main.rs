@@ -15,7 +15,7 @@ static RAW_DICTIONARY: &str = include_str!("dictionary.json");
 
 fn main() {
     let matches = App::new("Terrafarm")
-        .version("1.0.0")
+        .version("1.0.1")
         .about("A CLI used to query Terraform starter files to assist in getting you off the ground for cloud deployments")
         .subcommand(SubCommand::with_name("get")
             .about("Command for retrieivng terraform files")

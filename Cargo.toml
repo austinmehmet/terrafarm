@@ -2,7 +2,7 @@
 authors = ["Austin Mehmet"]
 name = "farm"
 description = "A fork-able CLI used to query Terraform starter files to assist in getting developers off the ground for cloud deployments"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 license = "MIT"
 readme = "README.md"
